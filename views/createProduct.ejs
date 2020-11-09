@@ -1,0 +1,34 @@
+<%- include('./includes/head.ejs') %>
+
+<div class="container">
+   <%- include('./includes/navigation.ejs') %> <% if(message) { %> <%-
+   include('./includes/error.ejs') %> <% } %>
+
+   <section class="Product">
+      <form
+         action="/products/create"
+         method="POST"
+         enctype="multipart/form-data"
+         class="Product__form--create"
+      >
+         <h1 style="margin-bottom: 2rem !important;" class="heading--primary">
+            Add Product
+         </h1>
+         <input name="title" type="text" placeholder="Product Name" />
+         <input name="image" type="file" />
+         <input name="price" type="number" placeholder="Product Price" />
+         <textarea
+            name="description"
+            placeholder="Product Description"
+            cols="30"
+            rows="10"
+         ></textarea>
+
+         <button type="submit" class="btn--primary">
+            Create Product
+         </button>
+      </form>
+   </section>
+</div>
+
+<%- include('./includes/end.ejs') %>

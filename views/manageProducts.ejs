@@ -1,0 +1,29 @@
+<%- include('./includes/head.ejs') %>
+
+<div class="container">
+   <%- include('./includes/navigation.ejs') %> <% if(message) { %> <%-
+   include('./includes/error.ejs') %> <% } %>
+
+   <section class="Product">
+      <div class="Product--list">
+         <ul>
+            <% if(products.length > 0) { %> <% for(let product of products) { %>
+            <li>
+               <span><%= product.title %></span>
+               <div class="action">
+                  <form action="/products/delete" method="POST">
+                     <input type="hidden" name="id" value="<%= product._id %>" />
+                     <button type="submit"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+                  <a href="/products/update/<%= product._id %>">
+                     <i class="far fa-edit"></i>
+                  </a>
+               </div>
+            </li>
+            <% } %> <% } %>
+         </ul>
+      </div>
+   </section>
+</div>
+
+<%- include('./includes/end.ejs') %>

@@ -1,0 +1,62 @@
+<%- include('./includes/head.ejs') %>
+
+<div class="container">
+   <%- include('./includes/navigation.ejs') %> <% if(message) { %> <%-
+   include('./includes/error.ejs') %> <% } %>
+
+   <section class="Product">
+      <div class="Product--list">
+         <ul>
+            <% if(products && products.length > 0) { %> <% for(let product of products) {
+            %>
+            <li>
+               <span><%= product.productId.title %>---(<%= product.quantity %>)</span>
+               <div class="action">
+                  <form action="/cart/remove" method="POST">
+                     <input
+                        type="hidden"
+                        name="productId"
+                        value="<%= product.productId._id %>"
+                     />
+                     <button type="submit"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+
+                  <form action="/cart/addOne" method="POST">
+                     <input
+                        type="hidden"
+                        name="productId"
+                        value="<%= product.productId._id %>"
+                     />
+                     <button type="submit">
+                        <i class="fas fa-plus"></i>
+                     </button>
+                  </form>
+
+                  <form action="/cart/removeOne" method="POST">
+                     <input
+                        type="hidden"
+                        name="productId"
+                        value="<%= product.productId._id %>"
+                     />
+
+                     <button type="submit">
+                        <i class="fas fa-minus"></i>
+                     </button>
+                  </form>
+               </div>
+            </li>
+            <% } %> <% if(total !== null && total) { %>
+            <h3 class="heading--third">
+               Total:- <%= total %>$
+            </h3>
+            <% } %> <%-include('./includes/checkout.ejs') %> <% } else { %>
+            <h1 class="heading--primary">
+               No Cart Items
+            </h1>
+            <% } %>
+         </ul>
+      </div>
+   </section>
+</div>
+
+<%- include('./includes/end.ejs') %>

@@ -1,0 +1,32 @@
+<%- include('./includes/head.ejs') %>
+
+<div class="container">
+   <%- include('./includes/navigation.ejs') %> <% if(message) { %> <%-
+   include('./includes/error.ejs') %> <% } %> <% if(product) { %>
+   <section class="Product--single">
+      <h2 class="heading--secondary"><%= product.title %></h2>
+
+      <img
+         src="<%= product.image %>"
+         alt="<%= product.title %>"
+         class="Product--single-img"
+      />
+
+      <p class="paragraph"><%= product.description %></p>
+
+      <span><%= product.price %>$</span>
+
+      <% if(IsLoggedIn) { %>
+      <form action="/cart" , method="POST">
+         <input type="hidden" name="productId" value="<%= product._id %>" />
+         <button type="submit" class="btn--primary">Add To Cart</button>
+      </form>
+      <% } %>
+   </section>
+
+   <% } else { %>
+   <h1 class="heading--primary">No Product With That ID</h1>
+   <% } %>
+</div>
+
+<%- include('./includes/end.ejs') %>

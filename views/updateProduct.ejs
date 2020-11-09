@@ -1,0 +1,52 @@
+<%- include('./includes/head.ejs') %>
+
+<div class="container">
+   <%- include('./includes/navigation.ejs') %> <% if(message) { %> <%-
+   include('./includes/error.ejs') %> <% } %>
+
+   <section class="Product">
+      <form
+         action="/products/update"
+         method="POST"
+         enctype="multipart/form-data"
+         class="Product__form--create"
+      >
+         <h1 style="margin-bottom: 2rem !important;" class="heading--primary">
+            Update Product
+         </h1>
+         <input
+            type="text"
+            name="title"
+            value="<%= product ? product.title : '' %>"
+            placeholder="Product Name"
+         />
+         <input type="file" name="image" />
+         <input type="hidden" name="id" value="<%= product ? product._id : null %>" />
+         <input
+            type="hidden"
+            name="oldImage"
+            value="<%= product ? product.image : null %>"
+         />
+         <input
+            type="number"
+            name="price"
+            value="<%= product ? product.price : '' %>"
+            placeholder="Product Price"
+         />
+         <textarea
+            name="description"
+            placeholder="Product Description"
+            cols="30"
+            rows="10"
+         >
+<%= product ? product.description : '' %></textarea
+         >
+
+         <button type="submit" class="btn--primary">
+            Update Product
+         </button>
+      </form>
+   </section>
+</div>
+
+<%- include('./includes/end.ejs') %>

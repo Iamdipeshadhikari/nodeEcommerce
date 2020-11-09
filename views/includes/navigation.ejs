@@ -1,0 +1,42 @@
+<section class="Navigation">
+   <div class="Navigation__logo">
+      <a href="/products">
+         <img src="/images/Logo.png" alt="Logo" />
+      </a>
+   </div>
+
+   <ul class="Navigation__list">
+      <% if(!IsLoggedIn) { %>
+      <li class="Navigation__item">
+         <a href="/user/signup" class="Navigation__link">Signup</a>
+      </li>
+      <% } %> <% if(!IsLoggedIn) { %>
+      <li class="Navigation__item">
+         <a href="/user/login" class="Navigation__link">Login</a>
+      </li>
+      <% } %> <% if(!IsLoggedIn) { %>
+      <li class="Navigation__item">
+         <a href="/user/forgetPassword" class="Navigation__link">Forget</a>
+      </li>
+      <% } %> <% if(IsLoggedIn) { %>
+      <li class="Navigation__item">
+         <form action="/user/logout" method="post">
+            <button class="btn--primary" type="submit">Logout</button>
+         </form>
+      </li>
+
+      <% if(user) { %> <% } %> <% if(user.role === 'user') { %>
+      <li class="Navigation__item">
+         <a href="/cart" class="Navigation__link">Go To Cart</a>
+      </li>
+      <% } %> <% if(user.role === 'admin') { %>
+      <li class="Navigation__item">
+         <a href="/products/manage" class="Navigation__link">Manage</a>
+      </li>
+      <% } %> <% if(user.role === 'admin') { %>
+      <li class="Navigation__item">
+         <a href="/products/create" class="Navigation__link">Add Products</a>
+      </li>
+      <% } %> <% } %>
+   </ul>
+</section>

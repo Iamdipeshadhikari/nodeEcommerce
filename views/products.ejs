@@ -1,0 +1,26 @@
+<%- include('./includes/head.ejs') %>
+
+<div class="container">
+   <%- include('./includes/navigation.ejs') %> <% if(message) { %> <%-
+   include('./includes/error.ejs') %> <% } %>
+
+   <section class="Product">
+      <div class="Product__products">
+         <% if(products.length > 0) { %> <% for(let product of products) { %>
+         <div class="Product__products--item">
+            <h3 class="heading--third">
+               <%= product.title %>
+            </h3>
+            <span>
+               <%= product.price %>$
+            </span>
+            <a href="/products/<%= product._id %>">
+               View Product
+            </a>
+         </div>
+         <% } %> <% } %>
+      </div>
+   </section>
+</div>
+
+<%- include('./includes/end.ejs') %>

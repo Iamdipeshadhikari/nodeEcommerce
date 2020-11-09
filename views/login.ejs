@@ -1,0 +1,35 @@
+<%- include('./includes/head.ejs') %>
+
+<div class="container">
+   <%- include('./includes/navigation.ejs') %>
+
+   <% if(message) { %>
+      <%- include('./includes/error.ejs') %>
+   <% } %>
+
+
+
+   <section class="Hero">
+      <%- include('./includes/heroInfo.ejs') %>
+
+      <div class="Hero__right">
+         <form action="/user/login" method="POST" class="Hero__form--login">
+            <h2 class="heading--secondary">Login Form</h2>
+            <input name="email" type="text" placeholder="Email" class="Hero__form--input" />
+            <input name="password" type="password" placeholder="Password" class="Hero__form--input" />
+
+            <div class="Hero__form--btnGroup">
+               <button type="submit" class="btn--secondary">
+                  Login
+               </button>
+
+               <a href="/user/forgetPassword">
+                  Forget Password
+               </a>
+            </div>
+         </form>
+      </div>
+   </section>
+</div>
+
+<%- include('./includes/end.ejs') %>
